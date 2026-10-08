@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wallet Lab</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <div class="badge">● ATIVO</div>
+    <h1>Wallet <span>Lab</span></h1>
+    <p>Ambiente para criação de carteiras digitais.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <small>CRIAR CARTEIRA</small>
+        <h2>Dados do titular</h2>
+      </div>
+      <div class="shield">⌾</div>
+    </div>
+
+    <form id="walletForm">
+      <label>Nome completo
+        <input id="name" required placeholder="Ex.: João da Silva" autocomplete="off">
+      </label>
+
+      <div class="grid">
+        <label class="field">
+          CPF
+          <div class="input-wrap">
+            <input id="cpf" required maxlength="14" inputmode="numeric" placeholder="000.000.000-00" autocomplete="off">
+            <span class="status-icon" id="cpfIcon" aria-hidden="true"></span>
+          </div>
+          <span class="hint" id="cpfHint"></span>
+        </label>
+        <label>Nascimento
+          <input id="birth" required type="date">
+        </label>
+      </div>
+
+      <div class="divider"><span>Dados do cartão</span></div>
+
+      <div class="card-preview">
+        <div class="chip"></div>
+        <div class="brand" id="previewBrand">CARD</div>
+        <div class="number" id="previewNumber">•••• •••• •••• ••••</div>
+        <div class="card-bottom">
+          <span id="previewName">TITULAR</span>
+          <span id="previewExp">MM/AA</span>
+        </div>
+      </div>
+
+      <label class="field">
+        Número do cartão
+        <div class="input-wrap">
+          <input id="card" required inputmode="numeric" maxlength="19"
+                 placeholder="•••• •••• •••• ••••" autocomplete="off">
+          <span class="status-icon" id="cardIcon" aria-hidden="true"></span>
+        </div>
+        <span class="hint" id="cardHint"></span>
+      </label>
+
+      <div class="grid">
+        <label>Validade
+          <input id="expiry" required maxlength="5" inputmode="numeric" placeholder="12/30">
+        </label>
+        <label>CVV
+          <input id="cvv" required maxlength="4" inputmode="numeric" placeholder="123">
+        </label>
+      </div>
+
+      <div class="notice">
+        <b>Segurança:</b> o backend nunca grava o número completo do cartão (PAN), CVV ou validade.
+        São armazenados apenas token, bandeira e os últimos 4 dígitos.
+      </div>
+
+      <button class="btn" type="submit">
+        <span>Criar carteira</span><b>→</b>
+      </button>
+      <div id="result" class="result"></div>
+    </form>
+  </section>
+
+  <section class="panel history">
+    <div class="panel-head">
+      <div><small>DATABASE</small><h2>Carteiras criadas</h2></div>
+      <button class="mini" id="refresh">Atualizar</button>
+    </div>
+    <div id="wallets" class="wallets"></div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
